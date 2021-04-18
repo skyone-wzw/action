@@ -20,7 +20,7 @@ class PixivSpider(scrapy.Spider):
     }
 
     def parse(self, response, **kwargs):
-        for index in range(1, 11):
+        for index in range(1, 2):
             yield scrapy.Request(
                 'https://www.pixiv.net/ajax/search/'
                 '%s/%s?p=%d&lang=zh' % (setting.PIXIV_TYPE, setting.PIXIV_KEYWORD, index),
@@ -52,5 +52,6 @@ class PixivSpider(scrapy.Spider):
                                       'like Gecko) Chrome/89.0.4389.128 Safari/537.36 Edg/89.0.774.77',
                         'Referer': "https://www.pixiv.net/"
                     }
+                    print(img)
                     yield img
                     time.sleep(setting.PIXIV_SLEEP_TIME)
