@@ -46,12 +46,11 @@ class PixivSpider(scrapy.Spider):
                     img["extension"] = item["url"].split('.')[-1]
                     img["name"] = ("%s_p%d-%s." % (img["id"], i, img["uid"])) + img["extension"]
 
-                    img["url"] = img["url"] + ("p%d." % i) + img["extension"]
+                    img["url"] = img["url"] + ("_p%d." % i) + img["extension"]
                     img["headers"] = {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, '
                                       'like Gecko) Chrome/89.0.4389.128 Safari/537.36 Edg/89.0.774.77',
                         'Referer': "https://www.pixiv.net/"
                     }
-                    print(img)
                     yield img
                     time.sleep(setting.PIXIV_SLEEP_TIME)
