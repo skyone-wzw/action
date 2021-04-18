@@ -1,0 +1,29 @@
+name: pixiv
+
+on:
+  workflow_dispatch:
+
+jobs:
+  spider:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@master
+
+    - name: 'Set up Python'
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Download Pixiv Picture
+      run: |
+        pip install requests
+        pip install lxml
+        pip install scrapy
+        scrapy crawl pixiv
+
+    - name: Upload Img
+      uses: actions/upload-artifact@master
+      with:
+        name: pixiv_img
+        path: pixiv

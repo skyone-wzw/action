@@ -1,0 +1,29 @@
+name: bili
+
+on:
+  workflow_dispatch:
+
+jobs:
+  spider:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@master
+
+    - name: 'Set up Python'
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Run Spider
+      run: |
+        pip install requests
+        pip install lxml
+        pip install scrapy
+        scrapy crawl bili
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: bili_img
+        path: bili
