@@ -52,5 +52,6 @@ class PixivSpider(scrapy.Spider):
                                       'like Gecko) Chrome/89.0.4389.128 Safari/537.36 Edg/89.0.774.77',
                         'Referer': "https://www.pixiv.net/"
                     }
+                    print(img)
                     yield img
                     time.sleep(setting.PIXIV_SLEEP_TIME)
