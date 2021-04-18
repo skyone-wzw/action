@@ -43,7 +43,7 @@ class PixivSpider(scrapy.Spider):
                     img["title"] = item["title"]
                     img["author"] = item["userName"]
                     img["uid"] = item["userId"]
-                    img["extension"] = img["url"].split('.')[-1]
+                    img["extension"] = item["url"].split('.')[-1]
                     img["name"] = ("%s_p%d-%s." % (img["id"], i, img["uid"])) + img["extension"]
 
                     img["url"] = img["url"] + ("p%d." % i) + img["extension"]
