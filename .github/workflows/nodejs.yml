@@ -17,17 +17,19 @@ jobs:
     
     - name: 'Set up env'
       run: |
-        pwd
         sudo apt update
         sudo apt install gcc g++ linux-headers-$(uname -r) make
 
     - name: Start build
       run: |
+        DIR=${pwd}
+        mkdir target
         wget https://nodejs.org/dist/v16.16.0/node-v16.16.0.tar.gz
         tar -zxf node-v16.16.0.tar.gz
         cd node-v16.16.0
-        ./configure --fully-static --enable-static
-        mkdir target
+        ./configure --fully-static --enable-static --prefix=${dir}/target
+        make -j 4 && make install
+        cd $dir
 
     - name: Upload
       uses: actions/upload-artifact@master
