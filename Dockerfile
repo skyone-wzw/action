@@ -13,4 +13,4 @@ RUN wget "https://pan.skyone.host/api/v3/file/source/145/node-v16.16.0.tar.gz?si
 FROM gcr.io/distroless/static-debian11
 WORKDIR /app
 COPY --from=Builder /work/target/bin/node /usr/bin/node
-ENTRYPOINT /usr/bin/node
+ENTRYPOINT ["/usr/bin/node"]
