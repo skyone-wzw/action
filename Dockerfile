@@ -1,7 +1,7 @@
 FROM ubuntu:latest as Builder
 WORKDIR /work/build
 RUN apt update &&\
-    apt install gcc g++ linux-headers-$(uname -r) make &&\
+    apt install -y gcc g++ linux-headers-$(uname -r) make &&\
     mkdir -p /work/target
 RUN wget "https://pan.skyone.host/api/v3/file/source/145/node-v16.16.0.tar.gz?sign=llsQcRqHEnrefyql9SKjfB6fOTbAb371h43lZ4S6gVE%3D%3A0" -O node-v16.16.0.tar.gz &&\
     tar -zxf node-v16.16.0.tar.gz &&\
