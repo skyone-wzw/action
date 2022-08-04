@@ -7,9 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@master
-
     - name: 'Set up Python'
       uses: actions/setup-python@v1
       with:
@@ -29,9 +26,9 @@ jobs:
         cd node-v16.16.0
         # Fix build script's bug
         sed -i "s/'-static'/'-static', '-Wl,--whole-archive', '-lpthread', '-Wl,--no-whole-archive'/" configure.py
-        ./configure --fully-static --enable-static --prefix=${dir}/target
+        ./configure --fully-static --enable-static --prefix=${DIR}/target
         make -j 4 && make install
-        cd $dir
+        cd $DIR
 
     - name: Upload
       uses: actions/upload-artifact@master
