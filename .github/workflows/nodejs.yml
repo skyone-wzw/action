@@ -19,16 +19,15 @@ jobs:
 
     - name: Start build
       run: |
-        DIR=${pwd}
-        mkdir target
+        mkdir /home/runner/work/action/action/target
         wget https://nodejs.org/dist/v16.16.0/node-v16.16.0.tar.gz
         tar -zxf node-v16.16.0.tar.gz
         cd node-v16.16.0
         # Fix build script's bug
         sed -i "s/'-static'/'-static', '-Wl,--whole-archive', '-lpthread', '-Wl,--no-whole-archive'/" configure.py
-        ./configure --fully-static --enable-static --prefix=${DIR}/target
+        ./configure --fully-static --enable-static --prefix=/home/runner/work/action/action/target
         make -j 4 && make install
-        cd $DIR
+        cd /home/runner/work/action/action
 
     - name: Upload
       uses: actions/upload-artifact@master
