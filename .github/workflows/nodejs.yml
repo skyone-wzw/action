@@ -17,12 +17,12 @@ jobs:
     
     - name: 'Set up env'
       run: |
-        apt update
-        apt install gcc g++ linux-headers-$(uname -r) make
+        pwd
+        sudo apt update
+        sudo apt install gcc g++ linux-headers-$(uname -r) make
 
     - name: Start build
       run: |
-        pwd
         wget https://nodejs.org/dist/v16.16.0/node-v16.16.0.tar.gz
         tar -zxf node-v16.16.0.tar.gz
         cd node-v16.16.0
