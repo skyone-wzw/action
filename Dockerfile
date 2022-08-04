@@ -1,4 +1,4 @@
-FROM luotianyi/ubuntu-cn:aliyun as Builder
+FROM ubuntu:latest as Builder
 WORKDIR /work/build
 RUN apt update &&\
     apt install gcc g++ linux-headers-$(uname -r) make &&\
