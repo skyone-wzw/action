@@ -1,0 +1,36 @@
+name: Build Node.js
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@master
+
+    - name: 'Set up Python'
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    
+    - name: 'Set up env'
+      run: |
+        apt update
+        apt install gcc g++ linux-headers-$(uname -r) make
+
+    - name: Start build
+      run: |
+        pwd
+        wget https://nodejs.org/dist/v16.16.0/node-v16.16.0.tar.gz
+        tar -zxf node-v16.16.0.tar.gz
+        cd node-v16.16.0
+        ./configure --fully-static --enable-static
+        mkdir target
+
+    - name: Upload
+      uses: actions/upload-artifact@master
+      with:
+        name: nodejs16
+        path: target
